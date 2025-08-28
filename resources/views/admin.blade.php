@@ -6,17 +6,13 @@
     <title>Document</title>
     @vite('resources/css/app.css')
 </head>
-<body>
-    <nav class="bg-white shadow-2xl p-4 flex justify-between items-center">
-        <div class="text-2xl font-bold text-gray-800  cursor-pointer hover:text-blue-500">
-            Quiz System
-        </div>
-        <div class="space-x-4">
-            <a href="" class="text-gray-700 hover:text-blue-500">Categories</a>
-            <a href="" class="text-gray-700 hover:text-blue-500">Quiz</a>
-            <a href="" class="text-gray-700 hover:text-blue-500">Welcome {{$name}}</a>
-            <a href="" class="text-gray-700 hover:text-blue-500">Login</a>
-        </div>
-    </nav>
+<body class="bg-gray-100">
+    <x-navbar name={{$name}}></x-navbar>
+   
+    <div class=" flex justify-center pt-20">
+    <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+        <h2 class="text-2xl text-center text-gray-800">Welcome, {{$name}}</h2>
+    </div>
+    </div>
 </body>
 </html>

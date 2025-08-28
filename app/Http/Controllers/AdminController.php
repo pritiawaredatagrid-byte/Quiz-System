@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Category;
 use Session;
 class AdminController extends Controller
 {
@@ -11,9 +12,8 @@ class AdminController extends Controller
         
         $validation = $request->validate([
             'name' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
-
 
         $admin = Admin::where([
             ['name',"=", $request->name],
@@ -40,4 +40,33 @@ class AdminController extends Controller
         }
         return view('admin',$admin);
     }
+
+    function categories(){
+        $admin =  Session::get('admin');
+        if($admin){
+            return view('categories',["name"=>$admin->name]);
+        }else{
+           return redirect('/admin-login'); 
+        }
+
+    }
+
+    function addCategory(Request $request){
+       $admin =  Session::get('admin');
+       $category = new Category();
+       $category->name = $request->category;
+       $category->creator = $admin->name;
+       if($category->save()){
+           Session::flash('category','Category '.$request->category.' added successfully.');
+       }else{
+           return 'Something went wrong';  
+    }
+         return redirect('admin-categories');
+    }
+
+    function logout(){
+        Session::forget('admin');
+        return redirect('/admin-login');
+    }
+
 }
