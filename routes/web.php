@@ -15,3 +15,7 @@ Route::get('dashboard', [AdminController::class, 'dashboard']);
 Route::get('admin-categories',[AdminController::class, 'categories']);
 Route::post('add-category',[AdminController::class, 'addCategory']);
 Route::get('admin-logout',[AdminController::class, 'logout']);
+Route::get('category/delete/{id}',[AdminController::class, 'deleteCategory']);
+
+Route::get('/add-quiz', [AdminController::class, 'showAddQuizForm']);
+Route::post('/add-quiz', [AdminController::class, 'addQuiz']);
